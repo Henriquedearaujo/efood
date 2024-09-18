@@ -6,6 +6,7 @@ export const BannerImg = styled.div`
   height: 350px;
   display: block;
   background-repeat: no-repeat;
+  background-size: 100%;
 `
 
 export const Tipo = styled.h3`
