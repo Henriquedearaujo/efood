@@ -3,7 +3,7 @@ import { cores } from '../../styles'
 
 export const BannerImg = styled.div`
   width: 100%;
-  height: 350px;
+  height: 280px;
   display: block;
   background-repeat: no-repeat;
   background-size: 100%;

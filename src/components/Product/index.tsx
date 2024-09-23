@@ -48,8 +48,8 @@ const Product = ({
       </AvProduct>
       <Descricao>{description}</Descricao>
       {btnStyles ? (
-        <Button type="link" to="/perfil" title={'Saiba mais'}>
-          Adiciona ao carrinho
+        <Button type="link" to="/perfil" title={'Adiciona ao carrinho'}>
+          Comprar
         </Button>
       ) : (
         <Button type="link" to="/perfil" title={'Saiba mais'}>

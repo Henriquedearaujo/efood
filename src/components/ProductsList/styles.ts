@@ -37,7 +37,7 @@ export const Container = styled.section<Omit<Props, 'title' | 'menu'>>`
     color: ${(props) =>
       props.styleButton === 'big' ? cores.rosa2 : cores.branco};
 
-    padding: ${(props) => (props.styleButton === 'big' ? '4px 86px ' : '')};
+    padding: ${(props) => (props.styleButton === 'big' ? '4px 124px ' : '')};
   }
 
   ${Div} {
