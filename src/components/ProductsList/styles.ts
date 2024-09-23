@@ -5,7 +5,7 @@ import { Card, Descricao, Div, Titulo } from '../Product/styles'
 import { ButtonLink } from '../Button/styles'
 
 export const Container = styled.section<Omit<Props, 'title' | 'menu'>>`
-  margin-top: 80px;
+  margin-top: 56px;
   margin-bottom: 120px;
 
   ${Card} {
