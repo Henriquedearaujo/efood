@@ -1,28 +1,28 @@
 class Menu {
   id: number
   title: string
-  category: string
+  highlight: boolean
+  type: string
+  assessment: number
   description: string
-  infos: string[]
   image: string
-  imgStar: string
 
   constructor(
     id: number,
     title: string,
-    category: string,
+    assessment: number,
     description: string,
-    infos: string[],
-    image: string,
-    imgStar: string
+    type: string,
+    highlight: boolean,
+    image: string
   ) {
     this.id = id
-    this.category = category
+    this.assessment = assessment
     this.description = description
     this.image = image
-    this.infos = infos
+    this.type = type
+    this.highlight = highlight
     this.title = title
-    this.imgStar = imgStar
   }
 }
 

@@ -2,7 +2,6 @@
 import { HeaderImg, HeaderPerfil, LinkItem } from './styles'
 import headerFundo from '../../assets/images/headerFundo.png'
 import ImageLogo from '../../assets/images/logo.png'
-import { Link } from 'react-router-dom'
 
 type Props = {
   usePerfil: boolean

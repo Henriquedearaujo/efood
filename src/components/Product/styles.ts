@@ -2,17 +2,20 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
 import { TagContainer } from '../Tag/styles'
-import { Props } from '.'
 
-export const Card = styled.div<Omit<Props,'title' | 'category' | 'description' | 'infos' | 'image' | 'imgStar'>>`
+export const Card = styled.div`
 background-color: ${cores.branco};
   position: relative;
 
   ${TagContainer} {
     margin-right: 8px;
   }
+  > img {
+    width: 472px;
+    height: 217px;
+    object-fit: cover;
+  }
 `
-export const Imagem = styled.div``
 
 export const Titulo = styled.h3`
   font-weight: bold;

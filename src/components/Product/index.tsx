@@ -8,56 +8,52 @@ import {
   Titulo
 } from './styles'
 
+import imgStar from '../../assets/images/estrela.png'
+
 import Button from '../Button'
 import Tag from '../Tag'
 
 export type Props = {
+  id: number
   title: string
-  category: string
+  assessment: number
   description: string
-  infos: string[]
+  type: string
+  highlight: boolean
   image: string
-  imgStar: string
-  boderColor?: 'null' | 'pink'
-  btnStyles?: boolean
 }
 
 const Product = ({
+  id,
   title,
-  category,
+  assessment,
   description,
-  infos,
-  image,
-  imgStar,
-  btnStyles
-}: Props) => (
-  <Card>
-    <img src={image} alt="" />
-    <TagInfos>
-      {infos.map((infos) => (
-        <Tag key={infos}>{infos}</Tag>
-      ))}
-    </TagInfos>
-    <Div>
-      <AvProduct>
-        <Titulo>{title}</Titulo>
-        <Avaliacao>
-          {category}
-          <img src={imgStar} />
-        </Avaliacao>
-      </AvProduct>
-      <Descricao>{description}</Descricao>
-      {btnStyles ? (
-        <Button type="link" to="/perfil" title={'Adiciona ao carrinho'}>
-          Comprar
-        </Button>
-      ) : (
-        <Button type="link" to="/perfil" title={'Saiba mais'}>
+  type,
+  highlight,
+  image
+}: Props) => {
+  return (
+    <Card>
+      <img src={image} alt="" />
+      <TagInfos>
+        {highlight && <Tag>Destaque do dia</Tag>}
+        <Tag>{type}</Tag>
+      </TagInfos>
+      <Div>
+        <AvProduct>
+          <Titulo>{title}</Titulo>
+          <Avaliacao>
+            {assessment}
+            <img src={imgStar} />
+          </Avaliacao>
+        </AvProduct>
+        <Descricao>{description}</Descricao>
+        <Button type="link" to={`/restaurante/${id}`} title={'Saiba mais'}>
           saiba mais
         </Button>
-      )}
-    </Div>
-  </Card>
-)
+      </Div>
+    </Card>
+  )
+}
 
 export default Product
