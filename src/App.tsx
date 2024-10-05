@@ -8,7 +8,6 @@ import { GlobalCss } from './styles'
 import Product from './components/Product'
 import ProductList from './components/ProductsList'
 import Footer from './components/Footer'
-import Menu from './model/Menu'
 
 import Rotas from './routes'
 

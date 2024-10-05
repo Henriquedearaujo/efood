@@ -2,6 +2,15 @@ import ProductList from '../../components/ProductsList'
 import Header from '../../components/Header'
 import { useEffect, useState } from 'react'
 
+export interface MunuInterface {
+  id: number
+  foto: string
+  preco: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
 export type Restaurants = {
   id: number
   titulo: string
@@ -10,14 +19,7 @@ export type Restaurants = {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: {
-    id: number
-    foto: string
-    preco: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
+  cardapio: MunuInterface[]
 }
 
 const Home = () => {
@@ -28,6 +30,10 @@ const Home = () => {
       .then((res) => res.json())
       .then((res) => setrestaurants(res))
   }, [])
+
+  if (!restaurants) {
+    return <h3>Carregando</h3>
+  }
 
   return (
     <>

@@ -10,9 +10,16 @@ export const List = styled.ul`
 `
 export const Card = styled.li`
   border-color: ${cores.rosa2};
-  border: ${'solid 8px'};
   background-color: ${cores.rosa2};
+  border: ${'solid 8px'};
   color: ${cores.rosa2};
+
+  img {
+    width: 304px;
+    height: 167px;
+    margin-right: 24px;
+    width: 100%;
+  }
 `
 
 export const Titulo = styled.h3`
@@ -74,6 +81,8 @@ export const Modal = styled.div`
   img {
     padding: 8px 16px 0;
     object-fit: cover;
+    width: 280px;
+    height: 280px;
   }
 `
 export const Texto = styled.div`

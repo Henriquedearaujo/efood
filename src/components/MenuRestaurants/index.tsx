@@ -15,25 +15,44 @@ import {
   Texto,
   Titulo
 } from './styles'
-import { Restaurants } from '../../pages/Home'
+import { MunuInterface, Restaurants } from '../../pages/Home'
 
 export type Props = {
-  menu: Restaurants[]
-}
-
-interface ModalState {
-  isVisible: boolean
+  menu: MunuInterface[]
 }
 
 const MenuRestaurants = ({ menu }: Props) => {
-  const [modal, setModalEstaAberto] = useState<ModalState>({
-    isVisible: false
+  const [modal, setModalEstaAberto] = useState({
+    isVisible: false,
+    selectedProduct: null as MunuInterface | null
   })
+
+  const openModal = (produto: MunuInterface) => {
+    setModalEstaAberto({
+      isVisible: true,
+      selectedProduct: produto
+    })
+  }
 
   const closeModal = () => {
     setModalEstaAberto({
-      isVisible: false
+      isVisible: false,
+      selectedProduct: null
     })
+  }
+
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 95) {
+      return descricao.slice(0, 250) + '...'
+    }
+    return descricao
+  }
+
+  const ParseToBRL = (preco = 0) => {
+    return new Intl.NumberFormat('pt-br', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(preco)
   }
 
   return (
@@ -41,17 +60,13 @@ const MenuRestaurants = ({ menu }: Props) => {
       <div className="container">
         <List>
           {menu.map((menu) => (
-            <Card key={menu.cardapio.id}>
-              <img src={menu.cardapio.foto} alt="" />
-              <Titulo>{menu.cardapio.nome}</Titulo>
-              <Descricao>{menu.cardapio.descricao}</Descricao>
+            <Card key={menu.id}>
+              <img src={menu.foto} alt="" />
+              <Titulo>{menu.nome}</Titulo>
+              <Descricao>{getDescricao(menu.descricao)}</Descricao>
               <Button
                 type="button"
-                onClick={() =>
-                  setModalEstaAberto({
-                    isVisible: true
-                  })
-                }
+                onClick={() => openModal(menu)}
                 title={' Adicionar ao carrinho'}
               >
                 Adicionar ao carrinho
@@ -70,24 +85,13 @@ const MenuRestaurants = ({ menu }: Props) => {
             }}
           />
           <Modal className="container">
-            <img src={pizza} alt="pizza" />
+            <img src={modal.selectedProduct?.foto} alt="pizza" />
             <Texto>
-              <h3>Pizza Marguarita</h3>
-              <p>
-                A pizza Margherita é uma pizza clássica da culinária italiana,
-                reconhecida por sua simplicidade e sabor inigualável. Ela é
-                feita com com com com com uma base de massa fina e crocante,
-                coberta com fresco, queijo mussarela de alta qualidade,
-                manjericão fresco e fresco e azeite de oliva extra-virgem. A
-                combinação de sabores é com o molho de tomate suculento e
-                ligeiramente ácido, o queijo derretido e cremoso e as folhas de
-                manjericão frescas, que adicionam um toque de sabor uma pizza
-                simples, mas deliciosa, que agrada a todos os todos os a todos
-                os todos os paladares e é uma ótima opção para qualquer ocasião
-              </p>
-              <p>Serve: de 2 a 3 pessoas</p>
+              <h3>{modal.selectedProduct?.nome}</h3>
+              <p>{modal.selectedProduct?.descricao}</p>
+              <p>Serve: {modal.selectedProduct?.porcao}</p>
               <ButtonModal type={'button'} title={'Adoconar ao carrinho'}>
-                Adoconar ao carrinho - R$ 60,00
+                Adoconar ao carrinho -{ParseToBRL(modal.selectedProduct?.preco)}
               </ButtonModal>
             </Texto>
           </Modal>
