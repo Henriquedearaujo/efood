@@ -15,8 +15,17 @@ background-color: ${cores.branco};
     height: 217px;
     object-fit: cover;
   }
-`
 
+  @media (max-width: 1024px) {
+    > img {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 425px) {
+      width: 100%;
+  }
+`
 export const Titulo = styled.h3`
   font-weight: bold;
   font-size: 18px;
@@ -38,6 +47,14 @@ export const Div = styled.div`
   border-color: ${cores.rosa2};
   margin-top: -4px;
   padding: 8px;
+
+  @media (max-width: 768px) {
+    width: 472px;
+  }
+
+  @media (max-width: 425px) {
+      width: 100%;
+  }
 `
 export const Avaliacao = styled.p`
   font-weight: bold;

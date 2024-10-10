@@ -16,6 +16,10 @@ export const HeaderImg = styled.div`
     font-size: 36px;
     font-weight: bold;
     color: ${cores.rosa2};
+
+    @media (max-width: 425px) {
+      margin-top: 80px;
+    }
   }
 
   .container {
@@ -33,6 +37,7 @@ export const HeaderPerfil = styled.div`
     font-size: 18px;
     font-weight: bold;
     color: ${cores.rosa2};
+    cursor: pointer;
   }
 
   .container {
@@ -41,6 +46,10 @@ export const HeaderPerfil = styled.div`
     justify-content: space-between;
     margin: auto;
     padding-top: 63px;
+
+    @media (max-width: 425px) {
+      gap: 12px;
+    }
   }
 `
 export const LinkItem = styled(Link)`

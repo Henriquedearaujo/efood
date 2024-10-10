@@ -3,6 +3,7 @@ import Button from '../Button'
 import pizza from '../../assets/images/pizza.png'
 import fecha from '../../assets/images/close.png'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import {
   ButtonModal,
@@ -15,19 +16,23 @@ import {
   Texto,
   Titulo
 } from './styles'
-import { MunuInterface, Restaurants } from '../../pages/Home'
+
+import { add, open } from '../../store/reducer/Cart'
+import { MenuInterface } from '../../pages/Home'
 
 export type Props = {
-  menu: MunuInterface[]
+  menu: MenuInterface[]
 }
 
 const MenuRestaurants = ({ menu }: Props) => {
   const [modal, setModalEstaAberto] = useState({
     isVisible: false,
-    selectedProduct: null as MunuInterface | null
+    selectedProduct: null as MenuInterface | null
   })
 
-  const openModal = (produto: MunuInterface) => {
+  const dispatch = useDispatch()
+
+  const openModal = (produto: MenuInterface) => {
     setModalEstaAberto({
       isVisible: true,
       selectedProduct: produto
@@ -53,6 +58,12 @@ const MenuRestaurants = ({ menu }: Props) => {
       style: 'currency',
       currency: 'BRL'
     }).format(preco)
+  }
+
+  const addToCart = (produto: MenuInterface) => {
+    dispatch(add(produto))
+    dispatch(open())
+    closeModal()
   }
 
   return (
@@ -85,12 +96,19 @@ const MenuRestaurants = ({ menu }: Props) => {
             }}
           />
           <Modal className="container">
-            <img src={modal.selectedProduct?.foto} alt="pizza" />
+            <img
+              src={modal.selectedProduct?.foto}
+              alt={modal.selectedProduct?.nome}
+            />
             <Texto>
               <h3>{modal.selectedProduct?.nome}</h3>
               <p>{modal.selectedProduct?.descricao}</p>
               <p>Serve: {modal.selectedProduct?.porcao}</p>
-              <ButtonModal type={'button'} title={'Adoconar ao carrinho'}>
+              <ButtonModal
+                type={'button'}
+                title={'Adoconar ao carrinho'}
+                onClick={() => addToCart(modal.selectedProduct!)}
+              >
                 Adoconar ao carrinho -{ParseToBRL(modal.selectedProduct?.preco)}
               </ButtonModal>
             </Texto>

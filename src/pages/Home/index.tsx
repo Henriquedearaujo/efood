@@ -1,8 +1,7 @@
 import ProductList from '../../components/ProductsList'
 import Header from '../../components/Header'
-import { useEffect, useState } from 'react'
 
-export interface MunuInterface {
+export interface MenuInterface {
   id: number
   foto: string
   preco: number
@@ -19,28 +18,23 @@ export type Restaurants = {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: MunuInterface[]
+  cardapio: MenuInterface[]
 }
 
+import { useGetRestaurantsQuery } from '../../service/api'
+
 const Home = () => {
-  const [restaurants, setrestaurants] = useState<Restaurants[]>([])
+  const { data: restaurants } = useGetRestaurantsQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setrestaurants(res))
-  }, [])
-
-  if (!restaurants) {
-    return <h3>Carregando</h3>
+  if (restaurants) {
+    return (
+      <>
+        <Header restauranrantsMenu={true} />
+        <ProductList restaurants={restaurants} />
+      </>
+    )
   }
-
-  return (
-    <>
-      <Header usePerfil={true} />
-      <ProductList restaurants={restaurants} />
-    </>
-  )
+  return <h3>Carregando</h3>
 }
 
 export default Home

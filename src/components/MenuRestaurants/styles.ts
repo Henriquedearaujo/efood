@@ -7,6 +7,14 @@ export const List = styled.ul`
   grid-template-columns: 1fr 1fr 1fr;
   padding-top: 56px;
   padding-bottom: 120px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 425px) {
+    grid-template-columns: 1fr;
+  }
 `
 export const Card = styled.li`
   border-color: ${cores.rosa2};
@@ -71,6 +79,14 @@ export const ModalContainer = styled.div`
     float: right;
     cursor: pointer;
   }
+
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media (max-width: 425px) {
+    width: 360px;
+  }
 `
 
 export const Modal = styled.div`
@@ -78,11 +94,22 @@ export const Modal = styled.div`
   color: ${cores.branco};
   background-color: ${cores.rosa2};
 
+  @media (max-width: 425px) {
+    display: block;
+    img {
+      width: 100%;
+    }
+  }
+
   img {
     padding: 8px 16px 0;
     object-fit: cover;
     width: 280px;
     height: 280px;
+
+    @media (max-width: 425px) {
+      width: 100%;
+    }
   }
 `
 export const Texto = styled.div`
@@ -107,4 +134,8 @@ export const ButtonModal = styled.button`
   border: none;
   padding: 4px 6px;
   cursor: pointer;
+
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `
