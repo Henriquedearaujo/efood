@@ -1,22 +1,17 @@
-import { BannerImg, Tipo, Titulo } from './styles'
-import { useParams } from 'react-router-dom'
-import { useGetMenuRestaurantQuery } from '../../service/api'
+import * as S from './styles'
 
-const Banner = () => {
-  const { id } = useParams()
-  const { data: menu } = useGetMenuRestaurantQuery(id!)
+export type Props = {
+  menu: Restaurants
+}
 
-  if (!menu) {
-    return <h3>Carregando</h3>
-  }
-
+const Banner = ({ menu }: Props) => {
   return (
-    <BannerImg style={{ backgroundImage: `url(${menu.capa})` }}>
+    <S.BannerImg style={{ backgroundImage: `url(${menu.capa})` }}>
       <div className="container">
-        <Tipo>{menu.tipo}</Tipo>
-        <Titulo>{menu.titulo}</Titulo>
+        <S.Tipo>{menu.tipo}</S.Tipo>
+        <S.Titulo>{menu.titulo}</S.Titulo>
       </div>
-    </BannerImg>
+    </S.BannerImg>
   )
 }
 

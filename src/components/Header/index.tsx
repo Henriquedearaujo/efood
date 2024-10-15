@@ -3,7 +3,7 @@ import { HeaderImg, HeaderPerfil, LinkItem } from './styles'
 import headerFundo from '../../assets/images/headerFundo.png'
 import ImageLogo from '../../assets/images/logo.png'
 
-import { close, open } from '../../store/reducer/Cart'
+import { open } from '../../store/reducer/Cart'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'

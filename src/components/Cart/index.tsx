@@ -1,31 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux'
-import pizza from '../../assets/images/pizza.png'
-import { close, remove } from '../../store/reducer/Cart'
-import {
-  ButtonCart,
-  Card,
-  CardContainer,
-  Overlay,
-  Price,
-  Sidebar,
-  Text
-} from './styles'
+import { close, closeSideBarCart, remove } from '../../store/reducer/Cart'
+import * as S from './styles'
 import { RootReducer } from '../../store'
+import Checkout from '../Checkout'
+import { ParseToBRL } from '../../utils'
 
 const Cart = () => {
-  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const { isOpen, items, openSide } = useSelector(
+    (state: RootReducer) => state.cart
+  )
 
   const dispatch = useDispatch()
 
-  const closeCart = () => {
-    dispatch(close())
+  const handleButtonClick = () => {
+    dispatch(closeSideBarCart())
   }
 
-  const ParseToBRL = (preco = 0) => {
-    return new Intl.NumberFormat('pt-br', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
+  const closeCart = () => {
+    openSide ? dispatch(close()) : ''
   }
 
   const removeItem = (id: number) => {
@@ -40,30 +32,47 @@ const Cart = () => {
 
   return (
     <>
-      <CardContainer className={isOpen ? 'is-open' : ''}>
-        <Overlay onClick={closeCart} />
-        <Sidebar>
-          <ul>
-            {items.map((produto) => (
-              <Card key={produto.id}>
-                <img src={produto.foto} alt="" />
-                <Text>
-                  <h3>{produto.nome}</h3>
-                  <p>{ParseToBRL(produto.preco)}</p>
-                </Text>
-                <button type="button" onClick={() => removeItem(produto.id)} />
-              </Card>
-            ))}
-            <Price>
-              <p>Valor total</p>
-              <p>{ParseToBRL(getTotalPrice())}</p>
-            </Price>
-            <ButtonCart type={'button'} title={'Adoconar ao carrinho'}>
-              Adoconar ao carrinho
-            </ButtonCart>
-          </ul>
-        </Sidebar>
-      </CardContainer>
+      <S.CardContainer className={isOpen ? 'is-open' : ''}>
+        <S.Overlay onClick={closeCart} />
+        {items.length > 0 ? (
+          <S.SideBarCart className={openSide ? 'isVisible' : ''}>
+            <ul>
+              {items.map((produto) => (
+                <S.Card key={produto.id}>
+                  <img src={produto.foto} alt="" />
+                  <S.Text>
+                    <h3>{produto.nome}</h3>
+                    <p>{ParseToBRL(produto.preco)}</p>
+                  </S.Text>
+                  <button
+                    type="button"
+                    onClick={() => removeItem(produto.id)}
+                  />
+                </S.Card>
+              ))}
+              <S.Price>
+                <p>Valor total</p>
+                <p>{ParseToBRL(getTotalPrice())}</p>
+              </S.Price>
+              <S.ButtonCart
+                type={'button'}
+                title={'Adoconar ao carrinho'}
+                onClick={handleButtonClick}
+              >
+                Continuar a entrega
+              </S.ButtonCart>
+            </ul>
+          </S.SideBarCart>
+        ) : (
+          <S.Sidebar>
+            <S.CartVoid>
+              O carrinho está vazio. <br /> Adicione pelo menos um produto para
+              continuar continuar com a compra
+            </S.CartVoid>
+          </S.Sidebar>
+        )}
+        <Checkout />
+      </S.CardContainer>
     </>
   )
 }

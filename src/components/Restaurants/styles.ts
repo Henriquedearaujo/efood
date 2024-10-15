@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { TagContainer } from '../Tag/styles'
+import { Link } from 'react-router-dom'
 
 export const Card = styled.div`
-background-color: ${cores.branco};
+background-color: ${colors.white};
   position: relative;
 
   ${TagContainer} {
@@ -29,12 +30,12 @@ background-color: ${cores.branco};
 export const Titulo = styled.h3`
   font-weight: bold;
   font-size: 18px;
-  color: ${cores.rosa2};
+  color: ${colors.Salmon};
   display: block;
 `
 export const Descricao = styled.p`
   font-size: 14px;
-  color: ${cores.rosa2};
+  color: ${colors.Salmon};
   line-height: 22px;
   display: block;
   margin-top: 16px;
@@ -44,7 +45,7 @@ export const Div = styled.div`
   border: solid 1px;
   border-top: none;
   padding-left: 8px;
-  border-color: ${cores.rosa2};
+  border-color: ${colors.Salmon};
   margin-top: -4px;
   padding: 8px;
 
@@ -59,7 +60,7 @@ export const Div = styled.div`
 export const Avaliacao = styled.p`
   font-weight: bold;
   font-size: 18px;
-  color: ${cores.rosa2};
+  color: ${colors.Salmon};
 
   img {
     margin-left: 8px;
@@ -73,4 +74,12 @@ export const TagInfos = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
+`
+export const ButtonLink = styled(Link)`
+  color: ${colors.white};
+  background: ${colors.Salmon};
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 6px;
+  text-decoration: none;
 `

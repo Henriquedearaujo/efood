@@ -1,20 +1,18 @@
-import { Restaurants } from '../../pages/Home'
-import Product from '../Product'
+import { getResDescricao } from '../../utils'
+import Loader from '../Loader'
+import Product from '../Restaurants'
 
 import { Container, List } from './styles'
 
-const getDescricao = (descricao: string) => {
-  if (descricao.length > 95) {
-    return descricao.slice() + '...'
-  }
-  return descricao
-}
-
 export type Props = {
   restaurants: Restaurants[]
+  isLoading: boolean
 }
 
-const ProductList = ({ restaurants }: Props) => {
+const ProductList = ({ restaurants, isLoading }: Props) => {
+  if (isLoading) {
+    return <Loader />
+  }
   return (
     <>
       <Container>
@@ -26,7 +24,7 @@ const ProductList = ({ restaurants }: Props) => {
                   id={restaurants.id}
                   title={restaurants.titulo}
                   assessment={restaurants.avaliacao}
-                  description={getDescricao(restaurants.descricao)}
+                  description={getResDescricao(restaurants.descricao)}
                   type={restaurants.tipo}
                   highlight={restaurants.destacado}
                   image={restaurants.capa}

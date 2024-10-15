@@ -1,10 +1,9 @@
-import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 
-export const cores = {
-  rosa1: '#FFEBD9',
-  rosa2: '#E66767',
-  branco: '#FFFFFF'
+export const colors = {
+  LightSalmon: '#FFEBD9',
+  Salmon: '#E66767',
+  white: '#FFFFFF'
 }
 
 export const GlobalCss = createGlobalStyle`

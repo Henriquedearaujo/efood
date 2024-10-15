@@ -1,16 +1,7 @@
-import {
-  Avaliacao,
-  AvProduct,
-  Card,
-  Descricao,
-  Div,
-  TagInfos,
-  Titulo
-} from './styles'
+import * as S from './styles'
 
 import imgStar from '../../assets/images/estrela.png'
 
-import Button from '../Button'
 import Tag from '../Tag'
 
 export type Props = {
@@ -23,7 +14,7 @@ export type Props = {
   image: string
 }
 
-const Product = ({
+const Restaurants = ({
   id,
   title,
   assessment,
@@ -33,27 +24,31 @@ const Product = ({
   image
 }: Props) => {
   return (
-    <Card>
+    <S.Card>
       <img src={image} alt="" />
-      <TagInfos>
+      <S.TagInfos>
         {highlight && <Tag>Destaque do dia</Tag>}
         <Tag>{type}</Tag>
-      </TagInfos>
-      <Div>
-        <AvProduct>
-          <Titulo>{title}</Titulo>
-          <Avaliacao>
+      </S.TagInfos>
+      <S.Div>
+        <S.AvProduct>
+          <S.Titulo>{title}</S.Titulo>
+          <S.Avaliacao>
             {assessment}
             <img src={imgStar} />
-          </Avaliacao>
-        </AvProduct>
-        <Descricao>{description}</Descricao>
-        <Button type="link" to={`/restaurante/${id}`} title={'Saiba mais'}>
+          </S.Avaliacao>
+        </S.AvProduct>
+        <S.Descricao>{description}</S.Descricao>
+        <S.ButtonLink
+          type="link"
+          to={`/restaurante/${id}`}
+          title={'Saiba mais'}
+        >
           saiba mais
-        </Button>
-      </Div>
-    </Card>
+        </S.ButtonLink>
+      </S.Div>
+    </S.Card>
   )
 }
 
-export default Product
+export default Restaurants

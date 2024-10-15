@@ -1,24 +1,13 @@
 import Button from '../Button'
 
-import pizza from '../../assets/images/pizza.png'
 import fecha from '../../assets/images/close.png'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import {
-  ButtonModal,
-  Card,
-  Descricao,
-  DivContainer,
-  List,
-  Modal,
-  ModalContainer,
-  Texto,
-  Titulo
-} from './styles'
+import * as S from './styles'
 
 import { add, open } from '../../store/reducer/Cart'
-import { MenuInterface } from '../../pages/Home'
+import { getMenuDescricao, ParseToBRL } from '../../utils'
 
 export type Props = {
   menu: MenuInterface[]
@@ -46,20 +35,6 @@ const MenuRestaurants = ({ menu }: Props) => {
     })
   }
 
-  const getDescricao = (descricao: string) => {
-    if (descricao.length > 95) {
-      return descricao.slice(0, 250) + '...'
-    }
-    return descricao
-  }
-
-  const ParseToBRL = (preco = 0) => {
-    return new Intl.NumberFormat('pt-br', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
-  }
-
   const addToCart = (produto: MenuInterface) => {
     dispatch(add(produto))
     dispatch(open())
@@ -69,12 +44,12 @@ const MenuRestaurants = ({ menu }: Props) => {
   return (
     <>
       <div className="container">
-        <List>
+        <S.List>
           {menu.map((menu) => (
-            <Card key={menu.id}>
+            <S.Card key={menu.id}>
               <img src={menu.foto} alt="" />
-              <Titulo>{menu.nome}</Titulo>
-              <Descricao>{getDescricao(menu.descricao)}</Descricao>
+              <S.Titulo>{menu.nome}</S.Titulo>
+              <S.Descricao>{getMenuDescricao(menu.descricao)}</S.Descricao>
               <Button
                 type="button"
                 onClick={() => openModal(menu)}
@@ -82,45 +57,34 @@ const MenuRestaurants = ({ menu }: Props) => {
               >
                 Adicionar ao carrinho
               </Button>
-            </Card>
+            </S.Card>
           ))}
-        </List>
+        </S.List>
       </div>
-      <DivContainer className={modal.isVisible ? 'visivel' : ''}>
-        <ModalContainer>
-          <img
-            src={fecha}
-            alt="fecha"
-            onClick={() => {
-              closeModal()
-            }}
-          />
-          <Modal className="container">
+      <S.DivContainer className={modal.isVisible ? 'visivel' : ''}>
+        <S.ModalContainer>
+          <img src={fecha} alt="fecha" onClick={closeModal} />
+          <S.Modal className="container">
             <img
               src={modal.selectedProduct?.foto}
               alt={modal.selectedProduct?.nome}
             />
-            <Texto>
+            <S.Texto>
               <h3>{modal.selectedProduct?.nome}</h3>
               <p>{modal.selectedProduct?.descricao}</p>
               <p>Serve: {modal.selectedProduct?.porcao}</p>
-              <ButtonModal
+              <S.ButtonModal
                 type={'button'}
                 title={'Adoconar ao carrinho'}
                 onClick={() => addToCart(modal.selectedProduct!)}
               >
                 Adoconar ao carrinho -{ParseToBRL(modal.selectedProduct?.preco)}
-              </ButtonModal>
-            </Texto>
-          </Modal>
-        </ModalContainer>
-        <div
-          className="overlay"
-          onClick={() => {
-            closeModal()
-          }}
-        ></div>
-      </DivContainer>
+              </S.ButtonModal>
+            </S.Texto>
+          </S.Modal>
+        </S.ModalContainer>
+        <div className="overlay" onClick={closeModal}></div>
+      </S.DivContainer>
     </>
   )
 }

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const Container = styled.footer`
-  background-color: ${cores.rosa1};
-  color: ${cores.rosa2};
+  background-color: ${colors.LightSalmon};
+  color: ${colors.Salmon};
   font-size: 10px;
 `
 export const FooterSection = styled.div`

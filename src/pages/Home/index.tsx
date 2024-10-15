@@ -1,27 +1,9 @@
-import ProductList from '../../components/ProductsList'
+import RestaurantsList from '../../components/RestaurantsList'
 import Header from '../../components/Header'
 
-export interface MenuInterface {
-  id: number
-  foto: string
-  preco: number
-  nome: string
-  descricao: string
-  porcao: string
-}
-
-export type Restaurants = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-  cardapio: MenuInterface[]
-}
-
 import { useGetRestaurantsQuery } from '../../service/api'
+import Loader from '../../components/Loader'
+import ScrollToTop from '../../components/ScrollToTop'
 
 const Home = () => {
   const { data: restaurants } = useGetRestaurantsQuery()
@@ -30,11 +12,12 @@ const Home = () => {
     return (
       <>
         <Header restauranrantsMenu={true} />
-        <ProductList restaurants={restaurants} />
+        <ScrollToTop />
+        <RestaurantsList restaurants={restaurants} isLoading={false} />
       </>
     )
   }
-  return <h3>Carregando</h3>
+  return <Loader />
 }
 
 export default Home

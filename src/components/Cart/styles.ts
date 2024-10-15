@@ -1,7 +1,13 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
-import { ButtonModal } from '../MenuRestaurants/styles'
+import { colors } from '../../styles'
 import lixeira from '../../assets/images/lixeira.png'
+import SideBar from '../SideBar'
+
+export const SideBarCart = styled(SideBar)`
+  &.isVisible {
+    display: block;
+  }
+`
 
 export const Overlay = styled.div`
   position: absolute;
@@ -26,7 +32,7 @@ export const CardContainer = styled.div`
   }
 `
 export const Sidebar = styled.aside`
-  background-color: ${cores.rosa2};
+  background-color: ${colors.Salmon};
   z-index: 1;
   padding: 40px 8px 0 8px;
   max-width: 360px;
@@ -35,8 +41,8 @@ export const Sidebar = styled.aside`
 
 export const Card = styled.li`
   display: flex;
-  color: ${cores.rosa2};
-  background-color: ${cores.rosa1};
+  color: ${colors.Salmon};
+  background-color: ${colors.LightSalmon};
   z-index: 1;
   margin-bottom: 16px;
 
@@ -76,18 +82,25 @@ export const Text = styled.div`
 export const Price = styled.div`
   display: flex;
   justify-content: space-between;
-  color: ${cores.branco};
+  color: ${colors.white};
   font-weight: bold;
   font-size: 16px;
   margin: 40px 0 16px 0px;
 `
 export const ButtonCart = styled.button`
-  color: ${cores.rosa2};
-  background: ${cores.rosa1};
+  color: ${colors.Salmon};
+  background: ${colors.LightSalmon};
   font-size: 14px;
   font-weight: bold;
   border: none;
   padding: 4px 6px;
   width: 100%;
   cursor: pointer;
+`
+export const CartVoid = styled.p`
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 22px;
+  color: ${colors.white};
+  text-align: center;
 `

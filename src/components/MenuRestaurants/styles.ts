@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const List = styled.ul`
   display: grid;
@@ -17,10 +17,10 @@ export const List = styled.ul`
   }
 `
 export const Card = styled.li`
-  border-color: ${cores.rosa2};
-  background-color: ${cores.rosa2};
+  border-color: ${colors.Salmon};
+  background-color: ${colors.Salmon};
   border: ${'solid 8px'};
-  color: ${cores.rosa2};
+  color: ${colors.Salmon};
 
   img {
     width: 304px;
@@ -33,13 +33,13 @@ export const Card = styled.li`
 export const Titulo = styled.h3`
   font-weight: bold;
   font-size: 16px;
-  color: ${cores.branco};
+  color: ${colors.white};
   display: block;
   padding-top: 8px;
 `
 export const Descricao = styled.p`
   font-size: 14px;
-  color: ${cores.branco};
+  color: ${colors.white};
   line-height: 22px;
   display: block;
   margin-top: 16px;
@@ -72,7 +72,7 @@ export const ModalContainer = styled.div`
 
   max-width: 1024px;
 
-  background-color: ${cores.rosa2};
+  background-color: ${colors.Salmon};
   padding: 8px 8px 32px;
 
   > img {
@@ -91,8 +91,8 @@ export const ModalContainer = styled.div`
 
 export const Modal = styled.div`
   display: flex;
-  color: ${cores.branco};
-  background-color: ${cores.rosa2};
+  color: ${colors.white};
+  background-color: ${colors.Salmon};
 
   @media (max-width: 425px) {
     display: block;
@@ -127,12 +127,13 @@ export const Texto = styled.div`
   }
 `
 export const ButtonModal = styled.button`
-  color: ${cores.rosa2};
-  background: ${cores.rosa1};
+  color: ${colors.Salmon};
+  background: ${colors.LightSalmon};
   font-size: 14px;
   font-weight: bold;
   border: none;
   padding: 4px 6px;
+  margin-top: 8px;
   cursor: pointer;
 
   @media (max-width: 425px) {

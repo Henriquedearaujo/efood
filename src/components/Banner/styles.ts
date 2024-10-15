@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 
 export const BannerImg = styled.div`
   width: 100%;
@@ -23,7 +23,7 @@ export const Tipo = styled.h3`
   font-size: 32px;
   font-style: italic;
   font-weight: 100;
-  color: ${cores.branco};
+  color: ${colors.white};
   padding-top: 25px;
   line-height: 37px;
   padding-top: -253px;
@@ -32,7 +32,7 @@ export const Tipo = styled.h3`
 export const Titulo = styled.h2`
   font-size: 32px;
   font-weight: bold;
-  color: ${cores.branco};
+  color: ${colors.white};
   margin-top: 155px;
   line-height: 37px;
 `

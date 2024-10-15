@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { Link } from 'react-router-dom'
 
 export const HeaderImg = styled.div`
@@ -15,7 +15,7 @@ export const HeaderImg = styled.div`
     margin-top: 138px;
     font-size: 36px;
     font-weight: bold;
-    color: ${cores.rosa2};
+    color: ${colors.Salmon};
 
     @media (max-width: 425px) {
       margin-top: 80px;
@@ -36,7 +36,7 @@ export const HeaderPerfil = styled.div`
   p {
     font-size: 18px;
     font-weight: bold;
-    color: ${cores.rosa2};
+    color: ${colors.Salmon};
     cursor: pointer;
   }
 
@@ -55,5 +55,5 @@ export const HeaderPerfil = styled.div`
 export const LinkItem = styled(Link)`
   font-size: 18px;
   font-weight: bold;
-  color: ${cores.rosa2};
+  color: ${colors.Salmon};
 `
