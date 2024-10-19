@@ -63,16 +63,24 @@ const Delivery = () => {
         .required('*O campo é obrigatório'),
       zipCode: Yup.string().required('*O campo é obrigatório'),
       number: Yup.string().required('*O campo é obrigatório'),
-      cardName: Yup.string()
-        .min(5, 'O nome precisa ter no mínimo 5 caracteres')
-        .required('*O campo é obrigatório'),
-      cardNumber: Yup.string().required('*O campo é obrigatório'),
-      cardCode: Yup.string().required('*obrigatório'),
-      cardMonth: Yup.string().required('*O campo é obrigatório'),
-      cardYear: Yup.string().required('*O campo é obrigatório')
+
+      cardName: Yup.string().when((values, schema) =>
+        openPurchase ? schema.required('O campo é obrigatório') : schema
+      ),
+      cardNumber: Yup.string().when((values, schema) =>
+        openPurchase ? schema.required('O campo é obrigatório') : schema
+      ),
+      cardCode: Yup.string().when((values, schema) =>
+        openPurchase ? schema.required('O campo é obrigatório') : schema
+      ),
+      cardMonth: Yup.string().when((values, schema) =>
+        openPurchase ? schema.required('O campo é obrigatório') : schema
+      ),
+      cardYear: Yup.string().when((values, schema) =>
+        openPurchase ? schema.required('O campo é obrigatório') : schema
+      )
     }),
     onSubmit: (values) => {
-      console.log(values)
       purchase({
         delivery: {
           receiver: values.receiver,
@@ -104,7 +112,11 @@ const Delivery = () => {
   })
 
   const handleButtonClick = () => {
-    dispatch(openPurchaseFuction())
+    form.validateForm().then((errors) => {
+      if (Object.keys(errors).length === 0) {
+        dispatch(openPurchaseFuction())
+      }
+    })
   }
 
   const BackDeliveryForm = () => {
@@ -194,7 +206,7 @@ const Delivery = () => {
                   onChange={form.handleChange}
                   onBlur={form.handleBlur}
                   mask="999"
-                  className={checkInputHasError('nomber') ? 'error' : ''}
+                  className={checkInputHasError('number') ? 'error' : ''}
                 />
               </div>
             </S.Row>
@@ -207,21 +219,21 @@ const Delivery = () => {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
             />
+            <Button
+              type="button"
+              onClick={handleButtonClick}
+              title="Clique aqui para continuar com a compra"
+            >
+              Continuar comprando
+            </Button>
+            <Button
+              type="button"
+              onClick={backHandleButtonClick}
+              title="Voltar ao carrinho"
+            >
+              Voltar para o carrinho
+            </Button>
           </S.Forms>
-          <Button
-            type="button"
-            onClick={handleButtonClick}
-            title="Clique aqui para continuar com a compra"
-          >
-            Continuar comprando
-          </Button>
-          <Button
-            type="button"
-            onClick={backHandleButtonClick}
-            title="Clique aqui para continuar voltar ao carrinho"
-          >
-            Voltar para o carrinho
-          </Button>
         </>
       </S.SideBarDelivery>
       <S.SideBarPurchase
@@ -296,22 +308,21 @@ const Delivery = () => {
                 />
               </div>
             </S.Row>
+            <Button
+              type="submit"
+              title="Clique aqui para Finalizar Pagamento a compra"
+              onClick={form.handleSubmit}
+            >
+              {isLoading ? 'Finalizando compra..' : 'Finalizar compra'}
+            </Button>
+            <Button
+              type="button"
+              title="Clique aqui para Voltar para a edição de endereço"
+              onClick={BackDeliveryForm}
+            >
+              Voltar para a edição de endereço
+            </Button>
           </S.Forms>
-          <Button
-            type="submit"
-            title="Clique aqui para Finalizar Pagamento a compra"
-            onClick={form.handleSubmit}
-            disabled={isLoading}
-          >
-            {isLoading ? 'Finalizando compra..' : 'Finalizar compra'}
-          </Button>
-          <Button
-            type="button"
-            title="Clique aqui para Voltar para a edição de endereço"
-            onClick={BackDeliveryForm}
-          >
-            Voltar para a edição de endereço
-          </Button>
         </>
       </S.SideBarPurchase>
       <S.SideBarFinish
